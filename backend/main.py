@@ -12,7 +12,7 @@ from backend.database import get_db
 # ==========================================
 
 app = FastAPI(
-    title="Sistema RRHH - INRA",
+    title="Sistema de Recursos Humanos",
     description="API para la gestion de personas, cargos y contratos",
     version="1.0.0"
 )
