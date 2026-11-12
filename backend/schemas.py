@@ -169,3 +169,50 @@ class FuenteResponse(BaseModel):
     codigo: str
 
     model_config = ConfigDict(from_attributes=True)
+
+    # ==========================================
+# ESQUEMAS DE CREACION: CATALOGOS
+# ==========================================
+
+class NivelSalarialCreate(BaseModel):
+    categoria: str
+    clase: int
+    nivel: int
+    cargo: str
+    sueldo: int
+    estado: bool = True
+
+
+class RegionalCreate(BaseModel):
+    regional: str
+    codigo: str
+
+
+class DireccionCreate(BaseModel):
+    idregional: int
+    direccion: str
+    codigo: Optional[str] = None
+    orden: Optional[int] = None
+
+
+class UnidadEjecutoraCreate(BaseModel):
+    iddireccion: int
+    unidadejecutora: str
+    codigo: Optional[int] = None
+    gestion: int
+    orden: Optional[int] = None
+
+
+class ProcesoCreate(BaseModel):
+    proceso: str
+    codigo: str
+    tipo_proceso: str
+    idregional: int
+    estado: bool = True
+    observacion: Optional[str] = None
+
+
+class FuenteCreate(BaseModel):
+    fuente: str
+    sigla: Optional[str] = None
+    codigo: str

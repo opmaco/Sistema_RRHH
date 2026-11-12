@@ -174,6 +174,112 @@ def listar_procesos(db: Session = Depends(get_db)):
 def listar_fuentes(db: Session = Depends(get_db)):
     return db.query(models.Fuente).all()
 
+    # ==========================================
+# POST: CATALOGOS
+# ==========================================
+
+@app.post(
+    "/api/niveles-salariales",
+    response_model=schemas.NivelSalarialResponse,
+    status_code=status.HTTP_201_CREATED,
+    tags=["Niveles Salariales"]
+)
+def crear_nivel_salarial(
+    nivel: schemas.NivelSalarialCreate,
+    db: Session = Depends(get_db)
+):
+    nuevo = models.NivelSalarial(**nivel.model_dump())
+    db.add(nuevo)
+    db.commit()
+    db.refresh(nuevo)
+    return nuevo
+
+
+@app.post(
+    "/api/regionales",
+    response_model=schemas.RegionalResponse,
+    status_code=status.HTTP_201_CREATED,
+    tags=["Regionales"]
+)
+def crear_regional(
+    regional: schemas.RegionalCreate,
+    db: Session = Depends(get_db)
+):
+    nuevo = models.Regional(**regional.model_dump())
+    db.add(nuevo)
+    db.commit()
+    db.refresh(nuevo)
+    return nuevo
+
+
+@app.post(
+    "/api/direcciones",
+    response_model=schemas.DireccionResponse,
+    status_code=status.HTTP_201_CREATED,
+    tags=["Direcciones"]
+)
+def crear_direccion(
+    direccion: schemas.DireccionCreate,
+    db: Session = Depends(get_db)
+):
+    nuevo = models.Direccion(**direccion.model_dump())
+    db.add(nuevo)
+    db.commit()
+    db.refresh(nuevo)
+    return nuevo
+
+
+@app.post(
+    "/api/unidades-ejecutoras",
+    response_model=schemas.UnidadEjecutoraResponse,
+    status_code=status.HTTP_201_CREATED,
+    tags=["Unidades Ejecutoras"]
+)
+def crear_unidad_ejecutora(
+    unidad: schemas.UnidadEjecutoraCreate,
+    db: Session = Depends(get_db)
+):
+    nuevo = models.UnidadEjecutora(**unidad.model_dump())
+    db.add(nuevo)
+    db.commit()
+    db.refresh(nuevo)
+    return nuevo
+
+
+@app.post(
+    "/api/procesos",
+    response_model=schemas.ProcesoResponse,
+    status_code=status.HTTP_201_CREATED,
+    tags=["Procesos"]
+)
+def crear_proceso(
+    proceso: schemas.ProcesoCreate,
+    db: Session = Depends(get_db)
+):
+    nuevo = models.Proceso(**proceso.model_dump())
+    db.add(nuevo)
+    db.commit()
+    db.refresh(nuevo)
+    return nuevo
+
+
+@app.post(
+    "/api/fuentes",
+    response_model=schemas.FuenteResponse,
+    status_code=status.HTTP_201_CREATED,
+    tags=["Fuentes de Financiamiento"]
+)
+def crear_fuente(
+    fuente: schemas.FuenteCreate,
+    db: Session = Depends(get_db)
+):
+    nuevo = models.Fuente(**fuente.model_dump())
+    db.add(nuevo)
+    db.commit()
+    db.refresh(nuevo)
+    return nuevo
+
+
 # ==========================================
 # ENDPOINTS: CONTRATOS
 # ==========================================
@@ -204,3 +310,4 @@ def crear_contrato(
     db.refresh(nuevo_contrato)
 
     return nuevo_contrato
+
