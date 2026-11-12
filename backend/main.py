@@ -118,6 +118,63 @@ def crear_cargo(
 
 
 # ==========================================
+# ENDPOINTS: CATALOGOS
+# ==========================================
+
+@app.get(
+    "/api/niveles-salariales",
+    response_model=List[schemas.NivelSalarialResponse],
+    tags=["Niveles Salariales"]
+)
+def listar_niveles_salariales(db: Session = Depends(get_db)):
+    return db.query(models.NivelSalarial).all()
+
+
+@app.get(
+    "/api/regionales",
+    response_model=List[schemas.RegionalResponse],
+    tags=["Regionales"]
+)
+def listar_regionales(db: Session = Depends(get_db)):
+    return db.query(models.Regional).all()
+
+
+@app.get(
+    "/api/direcciones",
+    response_model=List[schemas.DireccionResponse],
+    tags=["Direcciones"]
+)
+def listar_direcciones(db: Session = Depends(get_db)):
+    return db.query(models.Direccion).all()
+
+
+@app.get(
+    "/api/unidades-ejecutoras",
+    response_model=List[schemas.UnidadEjecutoraResponse],
+    tags=["Unidades Ejecutoras"]
+)
+def listar_unidades_ejecutoras(db: Session = Depends(get_db)):
+    return db.query(models.UnidadEjecutora).all()
+
+
+@app.get(
+    "/api/procesos",
+    response_model=List[schemas.ProcesoResponse],
+    tags=["Procesos"]
+)
+def listar_procesos(db: Session = Depends(get_db)):
+    return db.query(models.Proceso).all()
+
+
+@app.get(
+    "/api/fuentes",
+    response_model=List[schemas.FuenteResponse],
+    tags=["Fuentes de Financiamiento"]
+)
+def listar_fuentes(db: Session = Depends(get_db)):
+    return db.query(models.Fuente).all()
+
+# ==========================================
 # ENDPOINTS: CONTRATOS
 # ==========================================
 

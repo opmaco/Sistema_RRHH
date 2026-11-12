@@ -84,3 +84,88 @@ class ContratoResponse(ContratoBase):
     idcontrato: int
 
     model_config = ConfigDict(from_attributes=True)
+
+    # ==========================================
+# ESQUEMAS: NIVEL SALARIAL
+# ==========================================
+
+class NivelSalarialResponse(BaseModel):
+    idnivel_salarial: int
+    categoria: str
+    clase: int
+    nivel: int
+    cargo: str
+    sueldo: int
+    estado: bool
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+# ==========================================
+# ESQUEMAS: REGIONAL
+# ==========================================
+
+class RegionalResponse(BaseModel):
+    idregional: int
+    regional: str
+    codigo: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+# ==========================================
+# ESQUEMAS: DIRECCION
+# ==========================================
+
+class DireccionResponse(BaseModel):
+    iddireccion: int
+    idregional: int
+    direccion: str
+    codigo: Optional[str] = None
+    orden: Optional[int] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+# ==========================================
+# ESQUEMAS: UNIDAD EJECUTORA
+# ==========================================
+
+class UnidadEjecutoraResponse(BaseModel):
+    idunidadejecutora: int
+    iddireccion: int
+    unidadejecutora: str
+    codigo: Optional[int] = None
+    gestion: int
+    orden: Optional[int] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+# ==========================================
+# ESQUEMAS: PROCESO
+# ==========================================
+
+class ProcesoResponse(BaseModel):
+    idproceso: int
+    proceso: str
+    codigo: str
+    tipo_proceso: str
+    idregional: int
+    estado: bool
+    observacion: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+# ==========================================
+# ESQUEMAS: FUENTE
+# ==========================================
+
+class FuenteResponse(BaseModel):
+    idfuente: int
+    fuente: str
+    sigla: Optional[str] = None
+    codigo: str
+
+    model_config = ConfigDict(from_attributes=True)
